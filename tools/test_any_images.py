@@ -50,7 +50,7 @@ if __name__ == '__main__':
     model.cuda()
     model = torch.nn.DataParallel(model)
 
-    path = os.path.join(cfg.ROOT_DIR, './test_any_imgs_examples') # the dir of imgs
+    path = os.path.join(cfg.ROOT_DIR, './demo') # the dir of imgs
     imgs_list = os.listdir(path)
     for i in imgs_list:
         print(i)

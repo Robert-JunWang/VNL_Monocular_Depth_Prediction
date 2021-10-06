@@ -7,6 +7,7 @@ class CustomerDataLoader():
     def __init__(self, opt):
         self.opt = opt
         self.dataset = create_dataset(opt)
+        print('Total number of data:', len(self.dataset))
         self.dataloader = torch.utils.data.DataLoader(
             self.dataset,
             batch_size=opt.batchsize,

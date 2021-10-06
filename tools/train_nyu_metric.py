@@ -5,6 +5,8 @@ from lib.models.metric_depth_model import *
 from lib.core.config import cfg, merge_cfg_from_file, print_configs
 from lib.utils.net_tools import save_ckpt, load_ckpt
 from lib.utils.logging import setup_logging, SmoothedValue
+from lib.models.image_transfer import resize_image
+
 import math
 import traceback
 from tools.parse_arg_train import TrainOptions
