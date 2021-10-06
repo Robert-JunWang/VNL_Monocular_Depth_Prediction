@@ -17,6 +17,7 @@ pretrained
 # logs
 logs/
 demo/
+outputs/
 
 # Distribution / packaging
 .Python
