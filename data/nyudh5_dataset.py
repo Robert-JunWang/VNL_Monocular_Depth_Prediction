@@ -55,7 +55,7 @@ class NyudH5Dataset():
         self.opt = opt
         self.root = os.path.join(cfg.ROOT_DIR, opt.dataroot, opt.phase_anno)
         print('NyudH5Dataset initialize:',self.root)
-        self.depth_normalize = 60000.
+        self.depth_normalize = 10.0  # the max depth is 10m
 
         # self.dir_anno = os.path.join(cfg.ROOT_DIR, opt.dataroot, 'annotations', opt.phase_anno + '_annotations.json')
 
@@ -116,7 +116,7 @@ class NyudH5Dataset():
 
 
         A = rgb[:, :, ::-1].copy() #rgb -> bgr
-        B = depth
+        B = depth / self.depth_normalize
 
         flip_flg, crop_size, pad, resize_ratio = self.set_flip_pad_reshape_crop()
 

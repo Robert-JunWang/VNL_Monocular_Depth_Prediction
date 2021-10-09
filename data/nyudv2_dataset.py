@@ -15,7 +15,7 @@ class NYUDV2Dataset():
     def initialize(self, opt):
         self.opt = opt
         self.root = opt.dataroot
-        self.depth_normalize = 60000.
+        self.depth_normalize = 255.0*10
         self.dir_anno = os.path.join(cfg.ROOT_DIR, opt.dataroot, 'annotations', opt.phase_anno + '_annotations.json')
         self.A_paths, self.B_paths, self.AB_anno = self.getData()
         self.data_size = len(self.AB_anno)
