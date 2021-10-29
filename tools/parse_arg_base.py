@@ -18,6 +18,7 @@ class BaseOptions():
         parser.add_argument('--thread', default=4, type=int, help='Thread for loading data')
         parser.add_argument('--use_tfboard', action='store_true', help='Tensorboard to log training info')
         parser.add_argument('--results_dir', type=str, default='./evaluation', help='Output dir')
+        parser.add_argument('--onnx', type=str, default=None, help='Export to onnx format')
         self.initialized = True
         return parser
 

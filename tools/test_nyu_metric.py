@@ -15,6 +15,21 @@ import matplotlib.pyplot as plt
 
 logger = setup_logging(__name__)
 
+def export2onnx(model, onnx_file, input_dim=(3, 384, 384), output_names=["output"]):
+    channel, height, width = input_dim
+    # model.to('cpu')
+
+    extra_args = {'opset_version': 11 }
+    input_names=['data']
+    dummy_input = torch.randn(1, channel, height, width).cuda()
+
+
+    out = model(dummy_input)
+    # torch.onnx.export(model, dummy_input, onnx_file, verbose=True,
+    #                     do_constant_folding=True,
+    #                     input_names=input_names,
+    #                     output_names=output_names,*extra_args)
+
 if __name__ == '__main__':
     test_args = TestOptions().parse()
     test_args.thread = 1
@@ -34,6 +49,11 @@ if __name__ == '__main__':
         load_ckpt(test_args, model)
     model.cuda()
     model = torch.nn.DataParallel(model)
+
+    # if test_args.onnx:
+    #     export2onnx(model.module.depth_model, test_args.onnx)
+
+
 
     # test
     smoothed_absRel = SmoothedValue(test_datasize)
